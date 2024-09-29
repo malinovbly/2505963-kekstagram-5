@@ -72,4 +72,5 @@ const generatePhotosData = () => ({
 
 const PHOTOS_NEEDED = 25;
 
+// eslint-disable-next-line no-unused-vars
 const photosData = Array.from({length: PHOTOS_NEEDED}, generatePhotosData);
