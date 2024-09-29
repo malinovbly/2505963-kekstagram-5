@@ -10,10 +10,7 @@ stringLength('проверяемая строка', 10);
 function isPalindrome (string) {
   string = string.replaceAll(' ', '').toLowerCase();
   const reversedString = string.split('').reverse().join('');
-  if (string === reversedString) {
-    return true;
-  }
-  return false;
+  return string === reversedString;
 }
 
 isPalindrome('топот');
