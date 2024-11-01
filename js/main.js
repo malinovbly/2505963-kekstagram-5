@@ -1,3 +1,1 @@
-import {photosData} from './data.js';
-
-photosData();
+import './popup_big_pics.js';
