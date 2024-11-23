@@ -1,2 +1,2 @@
-import './big_popup.js';
-import './form_validation.js';
+import './big-pic_popup.js';
+import './input-form.js';
