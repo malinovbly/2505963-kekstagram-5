@@ -1,12 +1,12 @@
-const SCALE_CHANGE_STEP = 25;
-const MAX_SCALE = 100;
-const MIN_SCALE = 25;
-const DEFAULT_SCALE = 100;
-
 const picSmallerBtn = document.querySelector('.scale__control--smaller');
 const picBiggerBtn = document.querySelector('.scale__control--bigger');
 const picScale = document.querySelector('.scale__control--value');
 const picPreview = document.querySelector('.img-upload__preview');
+
+const DEFAULT_SCALE = 100;
+const SCALE_CHANGE_STEP = 25;
+const MAX_SCALE = 100;
+const MIN_SCALE = 25;
 
 function onPicSmallerBtnClick () {
   let intScale = parseInt(picScale['value'].slice(0, -1), 10);

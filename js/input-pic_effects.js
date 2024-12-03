@@ -1,3 +1,8 @@
+const effectLevelValue = document.querySelector('.effect-level__value');
+const effectLevelSlider = document.querySelector('.effect-level__slider');
+const picPreview = document.querySelector('.img-upload__preview');
+const sliderContainer = document.querySelector('.img-upload__effect-level');
+
 const EFFECTS = {
   'chrome': {'style': 'grayscale', 'min': 0, 'max': 1, 'step': 0.1},
   'sepia': {'style': 'sepia', 'min': 0, 'max': 1, 'step': 0.1},
@@ -6,11 +11,6 @@ const EFFECTS = {
   'heat': {'style': 'brightness', 'min': 1, 'max': 3, 'step': 0.1},
   'none': {},
 };
-
-const effectLevelValue = document.querySelector('.effect-level__value');
-const effectLevelSlider = document.querySelector('.effect-level__slider');
-const picPreview = document.querySelector('.img-upload__preview');
-const sliderContainer = document.querySelector('.img-upload__effect-level');
 
 function onEffectsListClick (evt) {
   if (evt.target.matches('.effects__radio')) {

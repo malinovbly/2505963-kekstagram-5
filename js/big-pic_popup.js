@@ -3,6 +3,7 @@ import {picsContainer} from './pics-render.js';
 import {isEscapeKey} from './util.js';
 
 const COMMENTS_STEP = 5;
+const COMMENT_AVATAR_SIZE = 35;
 
 let curPicCommsCount = COMMENTS_STEP;
 let curComms = [];
@@ -44,8 +45,8 @@ const createCommentElement = (comment) => {
 
   newCommentAvatar.src = avatar;
   newCommentAvatar.alt = name;
-  newCommentAvatar.width = 35;
-  newCommentAvatar.height = 35;
+  newCommentAvatar.width = COMMENT_AVATAR_SIZE;
+  newCommentAvatar.height = COMMENT_AVATAR_SIZE;
   newCommentText.textContent = message;
 
   newComment.appendChild(newCommentAvatar);
