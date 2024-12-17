@@ -2,6 +2,13 @@ const picTemplate = document.querySelector('#picture').content.querySelector('.p
 const picsContainer = document.querySelector('.pictures');
 
 const renderPics = (photosData) => {
+  if (picsContainer.children.length > 2) {
+    while (picsContainer.children.length > 2) {
+      const photo = picsContainer.lastChild;
+      photo.parentNode.removeChild(photo);
+    }
+  }
+
   const fragment = document.createDocumentFragment();
 
   photosData.forEach((photo) => {
