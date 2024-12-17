@@ -8,7 +8,8 @@ import {
 import {onEffectsListClick} from './input-pic-effects.js';
 import {uploadPhotosData} from './api.js';
 
-const uploadBtnText = {
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+const UploadBtnText = {
   IDLE: 'Опубликовать',
   SENDING: 'Публикация...'
 };
@@ -23,7 +24,7 @@ const descriptionInput = postEditForm.querySelector('.text__description');
 const picSmallerBtn = document.querySelector('.scale__control--smaller');
 const picBiggerBtn = document.querySelector('.scale__control--bigger');
 const picScale = document.querySelector('.scale__control--value');
-const picPreview = document.querySelector('.img-upload__preview');
+const picPreviewWrapper = document.querySelector('.img-upload__preview');
 const effectsList = document.querySelector('.effects__list');
 const effectLevelValue = document.querySelector('.effect-level__value');
 const sliderContainer = document.querySelector('.img-upload__effect-level');
@@ -62,12 +63,12 @@ const onErrorBlockKeyDown = (evt) => {
 
 const blockUploadBtn = () => {
   uploadBtn.disabled = true;
-  uploadBtn.textContent = uploadBtnText.SENDING;
+  uploadBtn.textContent = UploadBtnText.SENDING;
 };
 
 const unblockUploadBtn = () => {
   uploadBtn.disabled = false;
-  uploadBtn.textContent = uploadBtnText.IDLE;
+  uploadBtn.textContent = UploadBtnText.IDLE;
 };
 
 const onSuccessUpload = () => {
@@ -112,12 +113,12 @@ function onFormCancel () {
   descriptionInput.removeEventListener('keydown', cancelDocumentKeyDown);
 
   picScale['value'] = `${DEFAULT_SCALE}%`;
-  picPreview.style.transform = `scale(${DEFAULT_SCALE.toString()[0]})`;
+  picPreviewWrapper.style.transform = `scale(${DEFAULT_SCALE.toString()[0]})`;
   picSmallerBtn.removeEventListener('click', onPicSmallerBtnClick);
   picBiggerBtn.removeEventListener('click', onPicBiggerBtnClick);
 
   effectLevelValue['value'] = '';
-  picPreview.style.filter = '';
+  picPreviewWrapper.style.filter = '';
   effectsList.removeEventListener('click', onEffectsListClick);
 }
 
@@ -146,6 +147,14 @@ function onClickOutsideErrorBlock (evt) {
 }
 
 const onPhotoInput = () => {
+  const file = photoInputBtn.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((type) => fileName.endsWith(type));
+  if (matches) {
+    const preview = picPreviewWrapper.querySelector('img');
+    preview.src = URL.createObjectURL(file);
+  }
+
   document.addEventListener('keydown', onDocumentKeyDown);
   body.classList.add('modal-open');
   postEditForm.classList.remove('hidden');
@@ -161,5 +170,5 @@ const onPhotoInput = () => {
   effectsList.addEventListener('click', onEffectsListClick);
 };
 
-photoInputBtn.addEventListener('input', onPhotoInput);
+photoInputBtn.addEventListener('change', onPhotoInput);
 formCancel.addEventListener('click', onFormCancel);
